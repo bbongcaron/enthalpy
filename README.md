@@ -13,7 +13,7 @@ The enthalpy is determined by 1 of 2 algorithms:
   - If the component is water, reference temperature will be set to 0.01°C. Then using 2 of 3 given information variables  
     (tempertaure/pressure/state), enthalpy will be looked up in a steam table.
   - If the component is not water, heat capacity coefficients will be looked up in the given heat capacity spreadsheet.  
-    Heat capacity is then integrated from the reference temperature to the actual temperature with respect to temperature.  
+    Heat capacity is then integrated, with respect to temperature, from the reference temperature to the actual temperature.  
    
 **Error Handling:**  
 Heat capacity data in the spreadsheet is only valid within certain temperature ranges. Implementation of this check is coming soon.  
