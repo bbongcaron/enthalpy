@@ -1,8 +1,7 @@
 # Enthalpy
 ***Author: Brenton Bongcaron***  
 
-**Brief Description:**  
-Calculate the enthalpy of a component using steam tables or a data spreadsheet of heat capacity coefficients  
+**Brief Description:** Calculate the enthalpy of a component using steam tables or a data spreadsheet of heat capacity coefficients  
 
 **Details:**  
 This program uses either steam tables (Tables 9.5-9.9) or heat capacity coefficients (Table 9.11) from zyBooks 14:155:201
