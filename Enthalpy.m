@@ -1,28 +1,50 @@
 function [] = Enthalpy()
-    promptCell = {'Component', ...
-        'Reference Temp [°C]', ...
-        'Solid(s), liquid(l) or gas(g)', ...
-        'Temperature[°C]'};
-    userInfoCell = inputdlg(promptCell, 'Enthalpy Inputs', [1 1 1 1]);
-    fields = {'c', 'ref', 'state', 't'};
-    userInfoStruct = cell2struct(userInfoCell, fields);
-    component = userInfoStruct.c
-    refTemp = str2double(userInfoStruct.ref)
-    state = userInfoStruct.state
-    temp = str2double(userInfoStruct.t)
-    
+    [component, refTemp, state, temp] = userInput();
     if strcmpi(component, 'water') && refTemp == 0.01
         % case to be worked on later
     else
-        enthalpy = heatCapacity(refTemp, temp)
+        enthalpy = heatCapacity(component, refTemp, temp)
     end
 end
 
-function [enthalpy] = heatCapacity(refTemp, temp)
+function [component, refTemp, state, temp] = userInput()   
+    % may be inefficient run-time wise to grab component column twice, 
+    % however big O is still O(n), where
+    % n is number of components in heatCapacity.xlsx
+    matComp = readvars('heatCapacity.xlsx', 'Range', 'A2:A62');
+    len = length(matComp);
+    i = 1;
+%% remove duplicate names, state will be asked later
+    while i < len
+        if strcmpi(matComp(i), matComp(i+1))
+            matComp(i+1) = [];
+            len = len - 1;
+        end
+        i = i + 1;
+    end
+ %% Listdlg to choose component
+    componentIndex = listdlg('ListString', matComp, ...
+        'PromptString', 'Select a component:', ...
+        'ListSize', [400,400], 'SelectionMode', 'single')
+    component = matComp{componentIndex};
+    refTemp = 0.01;
+    temp = 0.01;
+    promptCell = {'Reference Temp [°C]', ...
+                    'Temperature[°C]',...
+                    "Type 'solid', 'liquid' or 'gas' (without quotes)"};
+    tempCell = inputdlg(promptCell, 'Temperature', [1 40]);
+    refTemp = str2double(tempCell{1});
+    temp = str2double(tempCell{2});
+    state = tempCell{3};
+    
+end
+
+function [enthalpy] = heatCapacity(component, refTemp, temp)
     enthalpy = 0;
     if refTemp == temp
         return
     end
+    [matA, matB, matC, matD] = readvars('heatCapacity.xlsx', 'Range', 'C2:F62');
     
 end
 
