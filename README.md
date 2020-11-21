@@ -9,9 +9,9 @@ and a user-inputted reference temperature, actual temperature, state, and possib
 a GUI to determine the enthalpy of the component at the given conditions.  
   
 The enthalpy is determined by 1 of 2 algorithms:  
-  - If the component is water, reference temperature will be set to 0.01°C. Then using 2 of 3 given information variables  
+  - If the component is water, reference temperature will be set to 0.01°C. Then using 2 of 3 given information variables
     (tempertaure/pressure/state), enthalpy will be looked up in a steam table.
-  - If the component is not water, heat capacity coefficients will be looked up in the given heat capacity spreadsheet.  
+  - If the component is not water, heat capacity coefficients will be looked up in the given heat capacity spreadsheet.
     Heat capacity is then integrated, with respect to temperature, from the reference temperature to the actual temperature.  
    
 **Error Handling:**  
