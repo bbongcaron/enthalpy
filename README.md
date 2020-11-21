@@ -5,8 +5,8 @@
 Calculate the enthalpy of a component using steam tables or a data spreadsheet of heat capacity coefficients  
 
 **Details:**  
-This program uses either steam tables (Tables 9.5-9.9) or heat capacity coefficients (Table 9.11) from zyBooks 14:155:201  
-and a user-inputted reference temperature, actual temperature, state, and possibly pressure (for water pressure tables) through  
+This program uses either steam tables (Tables 9.5-9.9) or heat capacity coefficients (Table 9.11) from zyBooks 14:155:201
+and a user-inputted reference temperature, actual temperature, state, and possibly pressure (for water pressure tables) through
 a GUI to determine the enthalpy of the component at the given conditions.  
   
 The enthalpy is determined by 1 of 2 algorithms:  
