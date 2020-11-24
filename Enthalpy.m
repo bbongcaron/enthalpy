@@ -49,6 +49,7 @@ function [component, refTemp, state, temp, pressure] = userInput()
         temp = str2double(tempCell{2});
         state = tempCell{3};
     end
+    return
 end
 
 function [enthalpy] = heatCapacity(component, refTemp, temp, state)
@@ -84,6 +85,7 @@ function [enthalpy] = heatCapacity(component, refTemp, temp, state)
                 line4 = "Temperature Range : " + matLowT(i) + tUnits(i) ...
                     + " <= T <= " + matHighT(i) + tUnits(i);
                 msgbox({line1;line2;line3;line4}, "Outside Valid Temperature Range!");
+                return
             end
             break
         end
@@ -92,5 +94,6 @@ function [enthalpy] = heatCapacity(component, refTemp, temp, state)
     syms T
     heatCap = A*T + B*T^2 + C*T^3 + D*T^4;
     enthalpy = double(int(heatCap, T, refTemp, temp));
+    return
 end
 
